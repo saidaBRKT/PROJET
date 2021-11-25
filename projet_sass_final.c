@@ -10,7 +10,7 @@ typedef struct{
 
 client clt[100];
 int j=0;
-// les prototypes :
+
 int menuPrinc();
 int menuOP();
 int menuAFF();
@@ -23,26 +23,28 @@ void triD();
 void afficher(client t[],int n);
 void max_3();
 void quitter();
+void login();
+void msg();
+void triD1(client t,int n);
 
 
 int main()
 {
    system("color A");
     motpass:
-    quitter();
-	int mot=1234;
-	int log=12345;
-	int login,password;
-	printf("\n\t\t\t\t !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n");
-	printf("\t\t\t\t LOGIN    : ");
-	scanf("%d",&login);
+    login();
+	int mot=0000,user=1234;
+	int username,password;
+	printf("\n\n\n\t\t\t\t\t !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n");
+	printf("\t\t\t\t\t\t\t Username  : ");
+	scanf("%d",&username);
 	printf("\n\n");
-	printf("\t\t\t\t PASSWORD : ");
+	printf("\t\t\t\t\t\t\t Password  : ");
 	scanf("%d",&password);
 	printf("\n\n\n");
-	printf("\n\t\t\t\t !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n");
+	printf("\n\t\t\t\t\t !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n\n\n");
 
-	if (login==log && password==mot)
+	if (username==user && password==mot)
 	{
 		system("CLS");
 
@@ -55,11 +57,11 @@ int main()
 		case 1:
 			{
 				 system("CLS");
-				printf("\t\t\t*************************      Bienvenu     *************************\n\n");
-        	    printf("\t\t\t\tVeuillez remplir les champs:\n");
+				printf("*************************      Bienvenu     *************************\n\n");
+        	    printf("\t\t\ttVeuillez remplir les champs:\n");
 				ajouter_1_client();
-				printf("\t\t\t************************* Ajout avec succes *************************\n");
-			    printf("\n\t\t\t tapper 1 pour afficher le menu principal :\t");
+				printf("\n\n************************* Ajout avec succes *************************\n");
+			    printf("\n\n tapper 1 pour afficher le menu principal :\t");
 
 	          	scanf("%d",&menuP);
 				if(menuP==1)
@@ -73,10 +75,10 @@ int main()
 		case 2:
 			{
 				system("CLS");
-   		    	printf("\t\t\t*************************  Bienvenu  *************************\n\n");
+   		    	printf("*************************  Bienvenu  *************************\n");
 			    ajouter_plus_clients();
-			    printf("\t\t\t********************  Ajout avec succes  *********************\n\n");
-				printf("\n\t\t\t tapper 1 pour afficher le menu priNcipal :");
+			    printf("\n\n********************  Ajout avec succes  *********************\n");
+				printf("\n tapper 1 pour afficher le menu principal :");
 				scanf("%d",&menuP);
 				if(menuP==1)
 				{
@@ -87,20 +89,17 @@ int main()
 				break;
 			}
 		case 3:
-            {    system("CLS");
-                int choi;
-
-                  op:
-                   menuOP:
+            {    
+			 system("CLS");
+             int choi;
+              menuOP:
                   choi =menuOP();
                      switch(choi)
                       {
                     case 1:
                         {
-
                         retrait();
-                       	printf("\n\t\t\t tapper 1 pour afficher le menu principal .");
-                        printf("\n\t\t\t tapper 0 pour afficher le menu operations .\n");
+                       	msg();
 			           	scanf("%d",&menuP);
 			           	if(menuP==1)
 			           	{
@@ -112,12 +111,12 @@ int main()
 			         	system("CLS");
 			         	goto menuOP;
 			           	}
-                        }break;
+						break;
+                        }
                     case 2:
                         {
                         depot();
-                       	printf("\n\t\t\t tapper 1 pour afficher le menu principal .");
-                        printf("\n\t\t\t tapper 0 pour afficher le menu operations .\n");
+                       	msg();
 			           	scanf("%d",&menuP);
 			           	if(menuP==1)
 			           	{
@@ -129,18 +128,17 @@ int main()
 			         	system("CLS");
 			         	goto menuOP;
 			           	}
-
-                    }break;
+                   break;
+                    }
                    default:
                    	{
                    		system("CLS");
 				 		printf("votre choix est incorrect:\n");
-				 		goto op;
-					   }
+				 		goto menuOP;
+					}
 
                 }
-                
-
+                break;
             }
 		case 4:
 			{
@@ -155,27 +153,25 @@ int main()
 			  	case 1:
 			  		{
 			  		triA();
-			        	printf("\n\t\t\t tapper 1 pour afficher le menu principal .");
-                        printf("\n\t\t\t tapper 0 pour afficher le menu operations .\n");
-			           	scanf("%d",&menuP);
-			           	if(menuP==1)
-			           	{
-			        	system("CLS");
-			        	goto debut;
-			           	}
-			           	if(menuP==0)
-			           	{
-			         	system("CLS");
-			         	goto menuAFF;
-			           	}
+			        msg();
+			       	scanf("%d",&menuP);
+			        if(menuP==1)
+			        {
+			        system("CLS");
+			       	goto debut;
+			       	}
+			       	if(menuP==0)
+			       	{
+			       	system("CLS");
+			       	goto menuAFF;
+			       	}
 			    	break;
 		         	}
 
 				case 2:
 			  		{
-			  	   	triD();
-			         	printf("\n\t\t\t tapper 1 pour afficher le menu principal .");
-                        printf("\n\t\t\t tapper 0 pour afficher le menu operations .\n");
+			  	    	triD();
+			         	msg();
 			           	scanf("%d",&menuP);
 			           	if(menuP==1)
 			           	{
@@ -206,7 +202,7 @@ int main()
 					    	}
 					}
 				//trie
-				client tp;
+			        	client tp;
 					    int echanges = 0;
                         do{
                            for(i = 0; i <k-1; i++)
@@ -223,8 +219,7 @@ int main()
 
 					// affichage apres trie
 			        	afficher(temp,k);
-						printf("\n\t\t\t tapper 1 pour afficher le menu principal .");
-                        printf("\n\t\t\t tapper 0 pour afficher le menu operations .\n");
+						msg();
 			           	scanf("%d",&menuP);
 			           	if(menuP==1)
 			           	{
@@ -254,7 +249,7 @@ int main()
 					    	}
 					}
 		         	//trie
-			     	client tp;
+			     	    client tp;
 					    int echanges = 0;
                         do{
                            for(i = 0; i <k-1; i++)
@@ -270,8 +265,7 @@ int main()
                         }while(echanges > 0);
 				      // affichage apres trie
 			        	afficher(temp,k);
-						printf("\n\t\t\t tapper 1 pour afficher le menu principal .");
-                        printf("\n\t\t\t tapper 0 pour afficher le menu operations .\n");
+						msg();
 			           	scanf("%d",&menuP);
 			           	if(menuP==1)
 			           	{
@@ -292,35 +286,30 @@ int main()
 			    char cin[10];
 			 	printf("entre votre Cin :\t");
                 scanf("%s",cin);
-               // void rechercher(cin);
                 int i,existe=0,indice;
 	            int a=j;
-
                 for(i=0;i<a;i++)
                 {
                  if(strcmp(cin,clt[i].CIN)==0)
                  {
 		        	existe=1;
-		        //	indice=i;
                     break;
                	 }
              	}
                  if(existe==1)
                  {
                 	printf("\n ce compte est existe\n");
-                    printf("CIN : %s\n",clt[indice].CIN);
-                    printf("NOM : %s\n",clt[indice].nom);
-                    printf("PRENOM : %s\n",clt[indice].prenom);
-                    printf("MONTANT : %f\n", clt[indice].montant);
+                    printf("CIN     :  %s\n",clt[indice].CIN);
+                    printf("NOM     :  %s\n",clt[indice].nom);
+                    printf("PRENOM  :  %s\n",clt[indice].prenom);
+                    printf("MONTANT :  %.2f\n", clt[indice].montant);
 		         }
                 else
 		         {
 		       	  printf("\n ce compte n existe pas\n");
 		         }
 		         
-		         
-		   	      printf("\n\t\t\t tapper 1 pour afficher le menu principal .");
-                  printf("\n\t\t\t tapper 0 pour afficher le menu operations .\n");
+		   	      msg();
 			   	  scanf("%d",&menuP);
 			   	  if(menuP==1)
 			      {
@@ -379,7 +368,7 @@ int main()
           	{
                		system("color C");
                 	quitter();
-                	printf("\n\n\t\t\t\t\t\t Aurevoir ('_') \n\n\n\n\n");
+                	printf("\n\n\t\t\t\t\t\t Aurevoir (^-^) \n\n\n\n\n");
 					break;
 					}
        	default :
@@ -416,13 +405,13 @@ int main()
 
 void ajouter_1_client()
 {
-				printf("\t\t\t\n CIN     : ");
+				printf("\n CIN     : ");
 				scanf("%s",clt[j].CIN);
-				printf("\t\t\t\n Nom     : ");
+				printf("\n Nom     : ");
 				scanf("%s",clt[j].nom);
-				printf("\t\t\t\n Prenom  : ");
+				printf("\n Prenom  : ");
 				scanf("%s",clt[j].prenom);
-				printf("\t\t\t\n Montant : ");
+				printf("\n Montant : ");
 				scanf("%f",&clt[j].montant);
 				j++;
 }
@@ -430,15 +419,13 @@ void ajouter_1_client()
 void ajouter_plus_clients()
 {
 		     	int i,a=j,n;
-				printf("\n\n\n\t\t\t Entrez le nombre de client :  ");
+				printf("\n Entrez le nombre de client :  ");
 				scanf("%d",&n);
-				printf("\n\n");
-
-				printf("\t\t\t Veuillez remplir les champs:\n");
-		    	printf("\n\t\t\n");
+				printf("\n");
+				printf(" Veuillez remplir les champs:\n\n");
 				for(i=a;i<n+a;i++)
 				{
-				printf("\n\t\t\t================ client %d : ================",i+1);
+				printf("\n=========== client %d : ===========",i+1);
 		    	ajouter_1_client();
 				}
 }
@@ -447,40 +434,41 @@ void retrait()
 {
             	char cin_user[10];
 	                     float s1;
-                         int i;
-                         int a=j;
+                         int a=j,i;
 
-                         printf("\t\t\t Entre un CIN :\t");
-                         r:
+                         printf(" \nEntre un CIN :\t");
+                         r1:
                         scanf("%s",&cin_user);
                         for(i=0;i<a;i++)
                         {
                             if(strcmp(cin_user,clt[i].CIN)==0)
                             {
-                                printf("\t\t\tCombien d'argent voulez-vous retirer : ");
-                                scanf("%f",&s1);
-                                printf("\n\n");
+                                printf(" \nCombien d'argent voulez-vous retirer : ");
+                                r:
+							    scanf("%f",&s1);
+                                printf("\n");
                                 if(s1>clt[i].montant)
                                 {
-                                	printf("\n===============================================\n");
-                                    printf("\t impossible votre sold inferieur a %.2f\n",s1);
-                                    printf("\n===============================================\n");
-                                    break;
+                                	printf("\n===========================================\n");
+                                    printf(" impossible votre sold inferieur a %.2f\n",s1);
+                                    printf("\n===========================================\n");
+                                    printf("Entrez un autre montant :\t ");
+                                    goto r;
                                 }
                                 else
                                 {
                                 clt[i].montant-=s1;
-                                printf("\n\n\t\t\t le retrait a effectue avec succes .\n");
+                                printf("\n\n le retrait a effectue avec succes.(^-^)\n");
                                 return;
 								}
 
                             }
                         }
-							 printf("\n\t\t===============================================\n");
-							 printf("\t\t ce compte n existe pas :\n");
-							 printf("\n\t\t===============================================\n\n");
-							 printf("entrez un autre CIN :\n");
-                             goto r;
+							 printf("\n==========================\n");
+							 printf(" ce compte n existe pas !!!\n");
+							 printf("\n==========================\n");
+							 printf("entrez un autre CIN : ");
+                             goto r1;
 
 
 
@@ -490,28 +478,27 @@ void retrait()
 void depot()
 {
                     	float s2;
-                         int i;
-                         int a=j;
+                         int a=j,i;
                          char cin_user[7];
-                         printf("\t\t\t Entre un CIN :\t");
+                         printf(" \nEntre un CIN :\t");
                          d:
                         scanf("%s",&cin_user);
                         for(i=0;i<a;i++)
                         {
-                            if(strstr(cin_user,clt[i].CIN))
+                            if(strcmp(cin_user,clt[i].CIN)==0)
                             {
-                                printf("\t\t\tCombien d'argent voulez-vous deposer :");
+                                printf(" Combien d'argent voulez-vous deposer :");
                                 scanf("%f",&s2);
                                 printf("\n\n");
                                 clt[i].montant+=s2;
-                                printf("\n\n\t\t\t le depot a effectue avec succes .\n");
+                                printf("\n\n le depot a effectue avec succes.(^-^)\n");
                                 return;
                             }
 							}
-							 printf("\n\t\t===============================================\n");
-							 printf("\t\t ce compte n existe pas :\n");
-							 printf("\n\t\t===============================================\n\n");
-                             printf("entrez un autre CIN :\n");
+							 printf("\n==========================\n");
+							 printf(" ce compte n existe pas !!!\n");
+							 printf("\n==========================\n");
+                             printf("entrez un autre CIN : ");
                              goto d;
                           }
 
@@ -519,10 +506,8 @@ void depot()
 
 void triA()
 {
-		int a=j;
-			
-						client temp;
-					    int i, echanges = 0;
+	             	int a=j,i,echanges = 0;
+					client temp;
                         do{
                            for(i = 0; i < a-1; i++)
 			           	 	 {
@@ -536,16 +521,15 @@ void triA()
                                }
                         }while(echanges > 0);
 
-              afficher(clt,a);
+                      afficher(clt,a);
 
 }
 
 
 void triD()
 {
-		                int a=j;
+		                int a=j,i, echanges = 0;
 						client temp;
-					    int i, echanges = 0;
                         do{
                            for(i = 0; i < a-1; i++)
 			           	 	 {
@@ -585,12 +569,12 @@ int menuOP()
 {
 	system("color E");
 	int choi;
-	 printf("\t\t\t===========================   Operations:  ===========================\n\n");
+	 printf("===========================   Operations:  ===========================\n\n");
                    printf("\t\t\t 1- Retrait \n");
                    printf("\t\t\t 2- Depot\n");
 
-     printf("\n\t\t\t======================================================================\n\n");
-                   printf("\n\n\t\t\t Veuillez choisir une operation: ");
+     printf("\n======================================================================\n\n");
+                   printf("\n Veuillez choisir une operation: ");
 				   scanf("%d",&choi);
 
     return choi;
@@ -599,12 +583,12 @@ int menuOP()
  {
  	int i;
  	for(i=0;i<n;i++)
-				{
-				printf("Client %d:\n",i+1);
-				printf("CIN : %s\n",t[i].CIN);
-				printf("Nom : %s\n",t[i].nom);
-				printf("Prenom : %s\n",t[i].prenom);
-				printf("Montant : %.2f\n",t[i].montant);
+				{	
+				printf("===== Client  : %d =====\n",i+1);
+				printf("CIN     :  %s\n",t[i].CIN);
+				printf("Nom     :  %s\n",t[i].nom);
+				printf("Prenom  :  %s\n",t[i].prenom);
+				printf("Montant :  %.2f\n",t[i].montant);
 				printf("\n");
 				}
 
@@ -616,8 +600,8 @@ system("color E");
 	printf("\n\n============================================   Affichage :  ============================================ \n\n");
               printf("1- Par Ordre Ascendant :\n");
 			  printf("2- Par Ordre Descendant :\n");
-			  printf("3- Par Ordre Ascendant (les comptes bancaires ayant un montant supérieur à un chiffre introduit) :\n");
-			  printf("4- Par Ordre Descendant (les comptes bancaires ayant un montant supérieur à un chiffre introduit) :\n");
+			  printf("3- Par Ordre Ascendant (les comptes bancaires ayant un montant superieur a un chiffre introduit) :\n");
+			  printf("4- Par Ordre Descendant (les comptes bancaires ayant un montant superieur a un chiffre introduit) :\n");
 			  printf("5- Recherche par CIN :\n");
 	printf("\n\n======================================================================================================== \n\n");
 			  printf("entrez votre choix :\n");
@@ -651,3 +635,24 @@ void quitter()
     printf("\t\t\t\t            @@@@@@@@@@@@@@@@@@@@o                          \n ");
     printf("\t\t\t\t                o@@@@@@@@@@@@@@                          \n ");
 }
+
+
+void login()
+{
+	printf("\t\t\t @@              o@@@o             o@@@o           @@@@@@@@     @@o         @@  \n");
+	printf("\t\t\t @@            @@     @@         @@     @@            @@        @@  @o      @@  \n");
+	printf("\t\t\t @@           @@       @@       @@       o@@          @@        @@   @o     @@  \n");
+	printf("\t\t\t @@          o@@       @@o     o@@                    @@        @@    @o    @@  \n");
+	printf("\t\t\t @@          @@o       o@@     @@o                    @@        @@     @o   @@  \n");
+	printf("\t\t\t @@          o@@       @@o     o@@     @@@@@          @@        @@      @o  @@  \n");
+	printf("\t\t\t @@            @@o    @@         @@o     o@@          @@        @@       @o @@  \n");
+	printf("\t\t\t @@@@@@@         o@@@o            o@@@@@@@o        @@@@@@@@     @@         o@@  \n");
+}
+
+void msg()
+{
+	printf("\n\n tapper 1 pour afficher le menu principal .");
+    printf("\n tapper 0 pour afficher le menu operations .\n");			           	
+}
+
+
